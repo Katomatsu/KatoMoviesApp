@@ -2,6 +2,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './App.css';
 import Navbar from './components/Navbar';
 import Auth from './pages/auth'
+import Home from './pages/home';
 
 function App() {
 	const router = createBrowserRouter([
@@ -11,7 +12,7 @@ function App() {
 			children: [
 				{
 					index: true,
-					element: <h1>Home</h1>
+					element: <Home/>
 				},
 				{
 					path: 'auth',
