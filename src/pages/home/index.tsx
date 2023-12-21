@@ -37,7 +37,7 @@ const Home = () => {
 					}
 					onClick={() => setDisplayType(DisplayType.TVShows)}
 				>
-					Movies
+					TV Shows
 				</Button>
 			</Button.Group>
 
