@@ -1,28 +1,45 @@
 import { useState } from 'react';
-import { Button } from 'semantic-ui-react';
+import { Button, Loader } from 'semantic-ui-react';
 import ColumnDisplay from './ColumnDisplay';
 import { DisplayType } from '../../types/types';
 
 import { fetchMovies, fetchTVShows } from '../auth/query';
 import { useQuery } from '@tanstack/react-query';
+import { Navigate } from 'react-router-dom';
 
 const Home = () => {
 	const [displayType, setDisplayType] = useState<DisplayType>(
 		DisplayType.Movies
 	);
 
-    const {data: movieData, isLoading: isLoadingMovies, isFetched: isFetchedMovies} = useQuery({
-        queryKey: ['movies'],
-        queryFn: fetchMovies
-    })
-    const {data: tvShowData, isLoading: isLoadingTVShows, isFetched: isFetchedTVShows} = useQuery({
+	const {
+		data: movieData,
+		isLoading: isLoadingMovies,
+		isFetched: isFetchedMovies
+	} = useQuery({
+		queryKey: ['movies'],
+		queryFn: fetchMovies
+	});
+	const {
+		data: tvShowData,
+		isLoading: isLoadingTVShows,
+		isFetched: isFetchedTVShows
+	} = useQuery({
 		queryKey: ['tvshows'],
 		queryFn: fetchTVShows
 	});
 
+	if (localStorage.getItem('guest_session_id') === null) {
+		return <Navigate to='/auth' />;
+	}
+
+	if (isLoadingTVShows || isLoadingMovies) {
+		return <Loader active />;
+	}
+
 	return (
 		<div style={{ marginTop: 50, height: 'auto' }}>
-			<Button.Group >
+			<Button.Group>
 				<Button
 					color={
 						displayType === DisplayType.Movies ? 'blue' : undefined
@@ -40,8 +57,6 @@ const Home = () => {
 					TV Shows
 				</Button>
 			</Button.Group>
-
-			{(isLoadingMovies || isLoadingTVShows) && <div>Loading...</div>}
 			{(isFetchedMovies || isFetchedTVShows) && (
 				<div style={{ marginTop: 20 }}>
 					{displayType === DisplayType.Movies ? (

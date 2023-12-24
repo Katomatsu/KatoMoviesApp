@@ -18,7 +18,7 @@ export const mutationLogin = async () => {
 
         const data = await res.json()
         localStorage.setItem('guest_session_id', data.guest_session_id);
-		return data;
+		return data.guest_session_id;
 	} catch (e) {
 		console.log(e);
 	}

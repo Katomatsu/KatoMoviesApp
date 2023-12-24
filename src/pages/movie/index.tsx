@@ -100,7 +100,7 @@ const Movie = () => {
 								</List.Item>
 								<List.Item>
 									<List.Header>Revenue:</List.Header>
-									{data.revenue}
+									{`${data.revenue}$`}
 								</List.Item>
 								<List.Item>
 									<List.Header>Runtime:</List.Header>
@@ -112,7 +112,7 @@ const Movie = () => {
 								</List.Item>
 								<List.Item>
 									<List.Header>Language:</List.Header>
-									{data.language}
+									{data.original_language}
 								</List.Item>
 							</List>
 						</Grid.Column>

@@ -10,4 +10,5 @@ export interface DisplayData {
     name?: string
 	vote_average: number;
 	release_date: string;
+    rating?: number
 }

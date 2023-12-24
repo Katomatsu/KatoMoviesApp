@@ -6,6 +6,7 @@ import Home from './pages/home';
 import Movie from './pages/movie';
 import TVShow from './pages/tvshow';
 import Error from './pages/error';
+import Rated from './pages/rated';
 
 function App() {
 	const router = createBrowserRouter([
@@ -23,7 +24,7 @@ function App() {
 				},
 				{
 					path: 'rated',
-					element: <h1>Rated</h1>
+					element: <Rated />
 				},
 				{
 					path: 'movie/:id',
@@ -34,7 +35,7 @@ function App() {
 					element: <TVShow />
 				}
 			],
-            errorElement: <Error/>
+			errorElement: <Error />
 		}
 	]);
 
